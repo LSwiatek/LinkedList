@@ -17,30 +17,15 @@ linked_list.delete_last_element()
 linked_list.delete_first_element()
 linked_list.delete_index(2)
 
-# linked_list.print_linkedlist()
-# linked_list.sort_asc()
+
+def fib(n):
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 1
+    elif n < 0:
+        raise Exception("Value must be positive")
+    return fib(n - 1) + fib(n - 2)
 
 
-list = [1,5,4,6]
-
-
-def sort_asc(list):
-    n = len(list)
-    for i in range(n):
-        for j in range(n-i-1):
-            if list[j] > list[j+1]:
-                temp = list[j]
-                list[j] = list[j+1]
-                list[j+1] = temp
-    print(list)
-
-sort_asc(list)
-
-
-
-
-
-
-
-
-
+fib(10)

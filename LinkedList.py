@@ -129,23 +129,26 @@ class LinkedList:
             current.value = new_value
         self.graph.reset_and_render_all(self)
 
-    def insert_at_index(self, index, value):
+    def insert_at_index1(self, index, value):
         if self.start is None and index == 0:
             self.start.value = value
             self.start.index = index
             return
         current = self.start
-        if index+1 > self.length():
+        if index + 1 > self.length():
             raise Exception("Index out of range")
         else:
             while index != current.index:
                 current = current.next
-            temp = current
-            temp.index = index + 1
-            current.value = value
-            current.index = index
-            current.next = temp
-            current.previous = temp.previous
+
+            new_element = Element(value)
+            new_element.index = current.index
+            new_element.next = current
+            new_element.previous = current.previous
+
+            current.index = index + 1
+            current.previous.next = new_element
+            current.previous = new_element
         self.graph.reset_and_render_all(self)
 
     # def swap(self, left, right):

@@ -35,6 +35,7 @@ class LinkedList:
             return
         else:
             new_element.next = self.start
+            self.start.previous = new_element
             self.start = new_element
             self.graph.reset_and_render_all(self)
 
@@ -116,28 +117,59 @@ class LinkedList:
             length += 1
         return length
 
-    def swap(self, left, right):
-        left.previous.next = right
-        right.previous = left.previous
-        left.previous = right
-        left.next = right.next
-        right.next.previous = left
-        right.next = left
-        return left, right
-
-    def sort_asc(self):
-        if self.start.next is None:
+    def update_value(self, index, new_value):
+        if self.start is None:
             return
-        current_element = self.start
-        n = self.length()
-        for i in range(n):
-            while current_element.next is not None:
-                if current_element.value > current_element.next.value:
-                    self.swap(current_element, current_element.next)
-                else:
-                    current_element = current_element.next
-        self.print_linkedlist()
+        current = self.start
+        if index+1 > self.length():
+            raise Exception("Index out of range")
+        else:
+            while index != current.index:
+                current = current.next
+            current.value = new_value
         self.graph.reset_and_render_all(self)
+
+    def insert_at_index(self, index, value):
+        if self.start is None and index == 0:
+            self.start.value = value
+            self.start.index = index
+            return
+        current = self.start
+        if index+1 > self.length():
+            raise Exception("Index out of range")
+        else:
+            while index != current.index:
+                current = current.next
+            temp = current
+            temp.index = index + 1
+            current.value = value
+            current.index = index
+            current.next = temp
+            current.previous = temp.previous
+        self.graph.reset_and_render_all(self)
+
+    # def swap(self, left, right):
+    #     left.previous.next = right
+    #     right.previous = left.previous
+    #     left.previous = right
+    #     left.next = right.next
+    #     right.next.previous = left
+    #     right.next = left
+    #     return left, right
+    #
+    # def sort_asc(self):
+    #     if self.start.next is None:
+    #         return
+    #     current_element = self.start
+    #     n = self.length()
+    #     for i in range(n):
+    #         while current_element.next is not None:
+    #             if current_element.value > current_element.next.value:
+    #                 self.swap(current_element, current_element.next)
+    #             else:
+    #                 current_element = current_element.next
+    #     self.print_linkedlist()
+    #     self.graph.reset_and_render_all(self)
 
     # to string
     def __str__(self):
@@ -148,4 +180,3 @@ class LinkedList:
             current_element = current_element.next
         return result
 
-# dodac set_value (update), insert_at_index

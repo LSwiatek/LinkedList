@@ -76,6 +76,18 @@ def find_repetition_in_text():
     sorted_words_dict = sorted(words_dict.items(), key=lambda x: x[1], reverse=True)
     return sorted_words_dict
 
+def fib(n):
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 1
+    elif n < 0:
+        raise Exception("Value must be positive")
+    return fib(n - 1) + fib(n - 2)
+
+
+fib(10)
+
 
 print(f"Number dividable by 2 are: {div_by_2(list1)}")
 print(f"The second highest number is: {find_2nd_highest(list2)}")

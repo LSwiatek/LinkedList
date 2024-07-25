@@ -16,12 +16,15 @@ class LinkedList:
         current = self.start
         while True:
             if current.next is None:
-                current.next = new_element
                 index = current.index
                 new_element.index = index + 1
-                current.previous = current
+                current.next = new_element
+                temp = current
+                current = current.next
+                current.previous = temp
                 break
-            current = current.next
+            else:
+                current = current.next
         self.graph.reset_and_render_all(self)
 
     def add_at_beginning(self, value):
@@ -62,11 +65,11 @@ class LinkedList:
             return
         current = self.start
         self.graph.mark_node_for_deletion(self.start)
-        if index > self.length():
+        if index+1 > self.length():
             raise Exception("Index out of range")
         elif index == 0:
             self.delete_first_element()
-        elif index == self.length():
+        elif index+1 == self.length():
             self.delete_last_element()
         else:
             while index != current.index:

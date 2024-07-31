@@ -1,4 +1,4 @@
-import random
+import array
 
 list1 = [1, 4, 2, 6, 1, 9, 13, 10, 33, 12, 0]
 list2 = [1, 4, 2, 6, 1, 9, 13, 10, 33, 12, 0]
@@ -28,7 +28,8 @@ def find_2nd_highest(list):
     return second
 
 
-def list_duplicates_of(list, item):
+# sprawdzic z enumerate
+def list_duplicates_of(list: list[str], item):
     index_list = []
     start = 0
     for i in list:
@@ -37,6 +38,18 @@ def list_duplicates_of(list, item):
         start += 1
     return index_list
 
+
+list3 = ["a", "c", "d", "e", "x", "z", "a", "b", "b", "a", "z", "s", "a", "b", "b", "a", "z"]
+
+
+def list_duplicates_of2(list: list[str], item):
+    index_list = []
+    j = list.index(item)
+    index_list.append(j)
+    while item in list[j+1:]:
+        j = list.index(item, j+1)
+        index_list.append(j)
+    return index_list
 
 # list = ["a", "s", "t"]
 # for i in range(0, len(list)-1):
@@ -114,6 +127,6 @@ def fib(n):
 # print(f"The repetitions in the text are: {find_repetition_in_text()}")
 # print(f"ABBA is at index {find_abba(list3)} of the list")
 # print(f"Your word is {find_word_in_list(list3, "abba")}")
-print(list_duplicates_of(list3,"a"))
+print(list_duplicates_of2(list3,"a"))
 
 

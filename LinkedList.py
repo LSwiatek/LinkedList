@@ -44,6 +44,7 @@ class LinkedList:
             return
         self.graph.mark_node_for_deletion(self.start)
         self.start = self.start.next
+        self.start.previous = None
         self.graph.reset_and_render_all(self)
 
     def delete_last_element(self):
@@ -65,7 +66,6 @@ class LinkedList:
         if self.start is None:
             return
         current = self.start
-        self.graph.mark_node_for_deletion(self.start)
         if index+1 > self.length():
             raise Exception("Index out of range")
         elif index == 0:
@@ -75,6 +75,7 @@ class LinkedList:
         else:
             while index != current.index:
                 current = current.next
+            self.graph.mark_node_for_deletion(current)
             current.previous.next = current.next
             current.next.previous = current.previous
         self.graph.reset_and_render_all(self)

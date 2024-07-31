@@ -3,12 +3,12 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import itertools as it
 
+
 class GraphUtil:
     class NoRender:
 
         def __getattr__(self, item):
             return lambda *args, **kwargs: None
-
 
     def __init__(self, graph=nx.DiGraph(), render_delay=0.5):
         self.graph = graph
@@ -18,14 +18,16 @@ class GraphUtil:
         self.graph.clear()
         self.graph.add_node("start", color="green")
         if linked_list.start is not None:
-            self.graph.add_edge("start", linked_list.start.value, color="gray", label="start", w="1")
+            self.graph.add_edge("start", linked_list.start.index, color="gray", label="start", w="1")
         current_element = linked_list.start
         while current_element is not None:
-            self.graph.add_node(current_element.value, color="blue")
+            self.graph.add_node(current_element.index, color="yellow")
             if current_element.previous is not None:
-                self.graph.add_edge(current_element.value, current_element.previous.value, color="green", label=f"prev", w="1")
+                self.graph.add_edge(current_element.index, current_element.previous.index, color="green", label=f"prev",
+                                    w="1")
             if current_element.next is not None:
-                self.graph.add_edge(current_element.value, current_element.next.value, color="green", label=f"next", w="1")
+                self.graph.add_edge(current_element.index, current_element.next.index, color="green", label=f"next",
+                                    w="1")
             current_element = current_element.next
 
         self.draw()
@@ -35,7 +37,7 @@ class GraphUtil:
         self.draw()
 
     def draw(self, render_delay=None):
-        G= self.graph
+        G = self.graph
 
         fig, ax = plt.subplots()
 
@@ -43,11 +45,10 @@ class GraphUtil:
         connectionstyle = [f"arc3,rad={r}" for r in it.accumulate([0.15] * 4)]
         # connectionstyle = [f"angle3,angleA={r}" for r in it.accumulate([30] * 4)]
 
-
         #Layout - line
-        # pos={n:[i,0] for i, n in enumerate(self.graph)}
+        pos = {n: [i, 0] for i, n in enumerate(self.graph)}
         #layout - circle
-        pos = nx.shell_layout(G)
+        # pos = nx.shell_layout(G)
 
         node_colors = nx.get_node_attributes(G, "color").values()
         edge_colors = nx.get_edge_attributes(G, "color").values()
@@ -57,7 +58,7 @@ class GraphUtil:
         nx.draw_networkx_edges(
             G, pos, edge_color=edge_colors, connectionstyle=connectionstyle, ax=ax
         )
-        attr_name="label"
+        attr_name = "label"
         labels = {
             tuple(edge): f"{attrs[attr_name]}"
             for *edge, attrs in G.edges(keys=True, data=True)

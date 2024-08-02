@@ -123,8 +123,8 @@ def fib(n):
 
 # print(f"Numbers dividable by 2 are: {div_by_2(list1)}")
 # print(f"The second highest number is: {find_2nd_highest(list2)}")
-# print(f"The repetitions in the list are: {find_repetition(list4)}")
-# print(f"The repetitions in the text are: {find_repetition_in_text()}")
+print(f"The repetitions in the list are: {find_repetition(list4)}")
+print(f"The repetitions in the text are: {find_repetition_in_text()}")
 # print(f"ABBA is at index {find_abba(list3)} of the list")
 # print(f"Your word is {find_word_in_list(list3, "abba")}")
 print(list_duplicates_of2(list3,"a"))

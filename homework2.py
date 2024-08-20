@@ -34,6 +34,9 @@ class Repetition:
     def __str__(self):
         return f'Repetition(list_of_strings={self.list_of_strings}, index={self.index})'
 
+    def __repr__(self):
+        return self.__str__()
+
 
 def find_longest_substring_without_rep():
     text = input("Insert text: ")
@@ -46,19 +49,46 @@ def find_longest_substring_without_rep():
     for element in input_list:
         if element not in r.list_of_strings:
             r.list_of_strings.append(element)
-            # r.index = counter
         else:
             list_of_repetitions.append(r)
             r = Repetition()
             r.list_of_strings = [element]
             r.index = counter
-            # r.index = input_list.index(element)
         counter += 1
     list_of_repetitions.append(r)
-    return list_of_repetitions
+    result = []
+    for elem in list_of_repetitions:
+        if len(result) < len(elem.list_of_strings):
+            result = elem.list_of_strings
+            result_index = elem.index
+    return list_of_repetitions, result, result_index
 
 
-print(find_longest_substring_without_rep()[1])
+def find_longest_substring_without_rep2():
+    text = input("Insert text: ")
+    input_list = list(text)
+    length = len(input_list) - 1
+    max_length = 0
+    result = []
+    result_index = 0
+    for element in input_list:
+        visited = []
+        index = input_list.index(element)
+        for i in range(index, length):
+            if input_list[i] not in visited:
+                visited.append(input_list[i])
+            elif input_list[i] in visited:
+                break
+        if len(visited) > max_length:
+            max_length = len(visited)
+            result.clear()
+            result.append(visited)
+            result_index = index
+    print(f"The longest string without repetitions is {result}, with length of {max_length}, starting at index {result_index}")
+
+
+# print(find_longest_substring_without_rep())
+find_longest_substring_without_rep2()
 
 
 

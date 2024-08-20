@@ -68,20 +68,17 @@ def find_abba(list):
         print("abba not present in the list")
 
 
-# def find_word_in_list(list, word):
-#     n = len(word)
-#     new_list = list(word)
-#
-#     for i in range(0, len(list)-1):
-#         for j in range(0,n-1):
-#             if list[i] == new_list[j] and list[i+1] == new_list[j+1] and list[i+2] == "b" and list[i+3] == "a":
-#                 return f"starting at index {i}"
-#
-#     # for i in range(len(letters_list) - n + 1):
-#     #     if list[i:i+n] == new_list:
-#     #         return f"starting at index {i}"
-#
-#     return "not found"
+def find_word_in_list(list, word):
+    string_list = ''.join(list)
+    word_list = [char for char in word]
+    first_letter = word_list[0]
+    if word in string_list:
+        return list.index(first_letter)
+    else:
+        return "not found"
+
+
+print(find_word_in_list(list3, "abba"))
 
 
 def find_repetition(list):

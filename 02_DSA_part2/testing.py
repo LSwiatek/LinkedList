@@ -22,7 +22,7 @@ def test_regular_score():
 
 def test_spare():
     assert bowling_score([8, 2, 4, 2, 3, 5, 0, 5, 1, 3, 2, 2, 9, 0, 2, 5, 1, 1, 2, 5]) == 66
-    assert bowling_score([5, 0, 4, 4, 3, 7, 5, 0, 8, 1, 4, 2,2, 5, 1, 1, 2, 5, 6, 3]) == 73
+    assert bowling_score([5, 0, 4, 4, 3, 7, 5, 0, 8, 1, 4, 2, 2, 5, 1, 1, 2, 5, 6, 3]) == 73
 
 
 def test_strike():
@@ -34,5 +34,5 @@ test_regular_score()
 test_strike()
 test_spare()
 
-print(bowling_score([1 ,3, 10, 0, 0, 5, 5, 3, 1, 7, 2, 9, 0, 10, 3, 3, 6, 2]))
-print(bowling_score([5, 5, 4, 0, 8, 1, 10, 0, 10, 1, 10, 4, 6, 10, 10, 5]))
+print(bowling_score([9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9]))
+# print(bowling_score([10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0]))

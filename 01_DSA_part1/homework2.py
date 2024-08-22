@@ -67,7 +67,7 @@ def find_longest_substring_without_rep():
 def find_longest_substring_without_rep2():
     text = input("Insert text: ")
     input_list = list(text)
-    length = len(input_list) - 1
+    length = len(input_list)
     max_length = 0
     result = []
     result_index = 0

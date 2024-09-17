@@ -4,11 +4,11 @@ import time
 
 
 ten_mln_list = []
-for n in range(0,100):
-    number = random.randint(0, 10000000)
+for n in range(0, 10000):
+    number = random.randint(0, 100000)
     ten_mln_list.append(number)
 
-print(ten_mln_list)
+# print(ten_mln_list)
 
 
 def merge_sort(list):
@@ -63,6 +63,8 @@ print(time.thread_time())
 
 
 #using 4 threads:
+
+# print(ten_mln_list)
 
 threads = []
 

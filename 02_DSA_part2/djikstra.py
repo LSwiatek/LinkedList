@@ -26,4 +26,4 @@ def djikstra(times: list, n: int, k: int):
         return -1
 
 
-print(djikstra(times=[[1, 2, 1]], n=2, k=1))
+print(djikstra(times=[[1, 2, 1], [2, 1, 1]], n=2, k=1))

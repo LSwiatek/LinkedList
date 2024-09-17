@@ -2,7 +2,7 @@ import heapq
 
 
 def dijkstra(V, adj, S):
-    min_weight = [10000] * V
+    min_weight = [float('inf')] * V
     min_weight[S] = 0
     min_dist = [(0, S)]  # (distance from source to node, node)
 

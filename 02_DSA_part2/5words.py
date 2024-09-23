@@ -1,4 +1,4 @@
-with open('5words.txt', 'r') as f:
+with open('word_trial.txt', 'r') as f:
     list_of_1000_words = words = f.read().splitlines()
 
 set_of_used_letters = set()
@@ -20,7 +20,7 @@ group_of_5 = []
 result = []
 
 for word in list_of_1000_words:
-    if len(word) == 5:
+    if len(word) == 2:
         if no_repetition(word) and len(group_of_5) < 5:
             split_word = [char for char in word]
             for char in split_word:
@@ -31,9 +31,14 @@ for word in list_of_1000_words:
             result.append(group_of_5)
             group_of_5 = []
             set_of_used_letters = set()
+            for char in split_word:
+                set_of_used_letters.add(char)
+            group_of_5.append(word)
+
+result.append(group_of_5)
 
 
-print(group_of_5)
+# print(group_of_5)
 print(result)
 
 
